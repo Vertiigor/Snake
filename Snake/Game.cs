@@ -4,18 +4,12 @@ using Snake.Scenes;
 using Snake.Scenes.SceneManager;
 using Snake.UI;
 using Snake.UI.Elements;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Snake.Fundamentals
 {
     public static partial class Game
     {
-        //...
+        //Other
         private static Font? font;
         private static int clickCount = 0;
 
