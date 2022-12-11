@@ -1,7 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
 using Snake.Scenes;
-using Snake.Scenes.SceneManager;
+using Snake.Scenes.Managment;
 using Snake.UI;
 using Snake.UI.Elements;
 

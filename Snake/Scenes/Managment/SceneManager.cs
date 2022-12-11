@@ -1,6 +1,6 @@
 ﻿using Snake.Fundamentals;
 
-namespace Snake.Scenes.SceneManager
+namespace Snake.Scenes.Managment
 {
     public static class SceneManager
     {
