@@ -3,14 +3,14 @@ using Snake.Scenes;
 
 namespace Snake.Fundamentals
 {
-    public static class Game
+    public static partial class Game
     {
-        public static List<Scene> Scenes { get; set; }
+        public static List<Scene>? Scenes { get; set; }
         public static Scene? CurrentScene { get; set; }
 
         static Game()
         {
-            Scenes = new List<Scene>();
+            Initialize();
         }
 
         public static void Run(RenderTarget target)

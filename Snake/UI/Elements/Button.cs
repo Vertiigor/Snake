@@ -11,11 +11,14 @@ namespace Snake.UI.Elements
         public event ElementUIHandler? Aimed;
 
         public Text Text { get; private set; }
-        public Color BackgroundColor { get => area.FillColor; 
+        public Color BackgroundColor 
+        { 
+            get => area.FillColor; 
             set 
             {
                 area.FillColor = value;
-            }}
+            }
+        }
         public Vector2f size { get; private set; }
         private RectangleShape area;
         private Color originalColor;
@@ -40,11 +43,11 @@ namespace Snake.UI.Elements
         {
             if (Mouse.IsButtonPressed(Mouse.Button.Left) && area.GetGlobalBounds().Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y))
             {
-                Click?.Invoke(this, new ElementUIEventArgs("Clicked"));
+                Click?.Invoke(this, new ElementUIEventArgs("Clicked", target));
             }
             if(area.GetGlobalBounds().Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y))
             {
-                Aimed?.Invoke(this, new ElementUIEventArgs("Button_Aimed"));
+                Aimed?.Invoke(this, new ElementUIEventArgs("Button_Aimed", target));
             }
             else
             {

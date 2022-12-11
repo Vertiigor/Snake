@@ -14,7 +14,9 @@ namespace Snake.UI.Elements
         private bool value, selected;
         private string text;
 
-        public bool Value { get => this.value; 
+        public bool Value 
+        {
+            get => this.value; 
             set
             {
                 this.value = value;
@@ -52,13 +54,13 @@ namespace Snake.UI.Elements
             if (Mouse.IsButtonPressed(Mouse.Button.Left) && area.Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y) && selected == false)
             {
                 Value = !Value;
-                Click?.Invoke(this, new ElementUIEventArgs("Clicked"));
+                Click?.Invoke(this, new ElementUIEventArgs("Clicked", target));
                 selected = true;
             }
             if (area.Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y))
             {
                 border.OutlineColor = Color.Cyan;
-                Aimed?.Invoke(this, new ElementUIEventArgs("CheckBox_Aimed"));
+                Aimed?.Invoke(this, new ElementUIEventArgs("CheckBox_Aimed", target));
             }
             else
             {
