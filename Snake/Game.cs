@@ -21,11 +21,15 @@ namespace Snake.Fundamentals
         private static Scene? menu;
 
         //Settings
-        private static Button? buttonBack;
+        private static Button? buttonMenuBack;
         private static Button? buttonCounter;
         private static Label? labelExample;
         private static CheckBox? checkBox;
         private static Scene? settings;
+
+        //Game
+        private static Button? buttonGameBack;
+        private static Scene? game;
         private static void Initialize()
         {
             Scenes = new List<Scene>();
@@ -35,7 +39,7 @@ namespace Snake.Fundamentals
             //Menu
             #region
             buttonStart = new Button(10, 100, "Start", font, new Color(76, 0, 32, 255));
-            buttonStart.Click += Start;
+            buttonStart.Click += ButtonStart_Click;
             buttonStart.Aimed += Button_Aimed;
 
             buttonSettings = new Button(10, 200, "Settings", font, new Color(76, 0, 32, 255));
@@ -54,9 +58,9 @@ namespace Snake.Fundamentals
 
             //Settings
             #region
-            buttonBack = new Button(10, 10, "Back", font, new Color(100, 31, 21, 255));
-            buttonBack.Click += ButtonBack_Click;
-            buttonBack.Aimed += Button_Aimed;
+            buttonMenuBack = new Button(10, 10, "Back", font, new Color(100, 31, 21, 255));
+            buttonMenuBack.Click += ButtonMenuBack_Click;
+            buttonMenuBack.Aimed += Button_Aimed;
 
             buttonCounter = new Button(300, 300, "Click me", font, new Color(100, 31, 21, 255));
             buttonCounter.Click += ButtonCounter_Click; ;
@@ -67,11 +71,26 @@ namespace Snake.Fundamentals
             checkBox = new CheckBox(10, 100, "Vertical Sync", font);
             checkBox.Click += CheckBox_Click;
 
-            settings = new Scene("Settings", new ElementUI[] { buttonBack, checkBox, buttonCounter, labelExample },
+            settings = new Scene("Settings", new ElementUI[] { buttonMenuBack, checkBox, buttonCounter, labelExample },
+                                   new GameObject[] { });
+            #endregion
+
+            //Game
+            #region
+            buttonGameBack = new Button(500, 500, "Back", font, new Color(100, 31, 21, 255));
+            buttonGameBack.Click += ButtonGameBack_Click; ;
+            buttonGameBack.Aimed += Button_Aimed;
+
+            settings = new Scene("Game", new ElementUI[] { buttonGameBack },
                                    new GameObject[] { });
             #endregion
 
             CurrentScene = menu;
+        }
+
+        private static void ButtonGameBack_Click(object sender, EventArgs e)
+        {
+            SceneManager.LoadScene("Menu");
         }
 
         private static void ButtonCounter_Click(object sender, EventArgs e)
@@ -89,7 +108,7 @@ namespace Snake.Fundamentals
             window?.SetVerticalSyncEnabled((sender as CheckBox).Value);
         }
 
-        private static void ButtonBack_Click(object sender, EventArgs e)
+        private static void ButtonMenuBack_Click(object sender, EventArgs e)
         {
             SceneManager.LoadScene("Menu");
         }
@@ -103,9 +122,9 @@ namespace Snake.Fundamentals
             window?.Close();
         }
 
-        private static void Start(object? sender, EventArgs e)
+        private static void ButtonStart_Click(object? sender, EventArgs e)
         {
-            Console.WriteLine("Started");
+            SceneManager.LoadScene("Game");
         }
 
         private static void Button_Aimed(object? sender, EventArgs e)
