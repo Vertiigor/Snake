@@ -26,14 +26,24 @@ namespace Snake.Scenes
             foreach(ElementUI element in UIelemnts)
             {
                 element.Update(target);
-
-                if (element is Drawable)
-                    target.Draw(element as Drawable);
             }
 
             foreach (GameObject element in gameObjects)
             {
                 
+            }
+        }
+
+        public void Draw(RenderTarget target)
+        {
+            foreach (ElementUI element in UIelemnts)
+            {
+                target.Draw(element);
+            }
+
+            foreach (GameObject element in gameObjects)
+            {
+
             }
         }
     }
