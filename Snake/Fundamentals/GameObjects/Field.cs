@@ -10,9 +10,11 @@ namespace Snake.Fundamentals.GameObjects
 
         private List<RectangleShape> cells;
 
-        public Field(int width, int height) 
+        public Field(int width, int height, RenderTarget target) 
         {
-            cells= new List<RectangleShape>();
+            snake = new Snake(target);
+
+            cells = new List<RectangleShape>();
 
             for(int x = 0; x < width; x++)
             {

@@ -43,11 +43,11 @@ namespace Snake.UI.Elements
         {
             if (Mouse.IsButtonPressed(Mouse.Button.Left) && area.GetGlobalBounds().Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y))
             {
-                Click?.Invoke(this, new ElementUIEventArgs("Clicked", target));
+                Click?.Invoke(this, new ElementUIEventArgs("Clicked"));
             }
             if(area.GetGlobalBounds().Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y))
             {
-                Aimed?.Invoke(this, new ElementUIEventArgs("Button_Aimed", target));
+                Aimed?.Invoke(this, new ElementUIEventArgs("Button_Aimed"));
             }
             else
             {

@@ -54,13 +54,13 @@ namespace Snake.UI.Elements
             if (Mouse.IsButtonPressed(Mouse.Button.Left) && area.Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y) && selected == false)
             {
                 Value = !Value;
-                Click?.Invoke(this, new ElementUIEventArgs("Clicked", target));
+                Click?.Invoke(this, new ElementUIEventArgs("Clicked"));
                 selected = true;
             }
             if (area.Contains(Mouse.GetPosition((Window)target).X, Mouse.GetPosition((Window)target).Y))
             {
                 border.OutlineColor = Color.Cyan;
-                Aimed?.Invoke(this, new ElementUIEventArgs("CheckBox_Aimed", target));
+                Aimed?.Invoke(this, new ElementUIEventArgs("CheckBox_Aimed"));
             }
             else
             {

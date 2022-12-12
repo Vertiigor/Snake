@@ -34,6 +34,15 @@ namespace Snake.Fundamentals
         private static Field? field;
         private static void Initialize()
         {
+            timer = new Timer(16.6f);
+
+            contextSettings = new ContextSettings(1, 1, 8);
+
+            window = new RenderWindow(new SFML.Window.VideoMode(700, 700), "Snake", SFML.Window.Styles.Titlebar, contextSettings);
+
+            window.Closed += Close;
+            window.SetKeyRepeatEnabled(false);
+
             Scenes = new List<Scene>();
 
             font = new Font(Path.Combine(Directory.GetCurrentDirectory(), "Assets") + "\\Fonts\\PF.ttf");
@@ -83,7 +92,7 @@ namespace Snake.Fundamentals
             buttonGameBack.Click += ButtonGameBack_Click; ;
             buttonGameBack.Aimed += Button_Aimed;
 
-            field = new Field(25, 25);
+            field = new Field(25, 25, window);
 
             settings = new Scene("Game", new ElementUI[] { buttonGameBack },
                                    new GameObject[] { field });
@@ -105,10 +114,6 @@ namespace Snake.Fundamentals
 
         private static void CheckBox_Click(object sender, EventArgs e)
         {
-            var e1 = e as ElementUIEventArgs;
-
-            var window = e1.Target as Window;
-
             window?.SetVerticalSyncEnabled((sender as CheckBox).Value);
         }
 
@@ -119,10 +124,6 @@ namespace Snake.Fundamentals
 
         private static void Close(object? sender, EventArgs e)
         {
-            var e1 = e as ElementUIEventArgs;
-
-            var window = e1.Target as Window;
-
             window?.Close();
         }
 

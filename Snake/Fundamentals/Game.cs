@@ -1,4 +1,5 @@
 ﻿using SFML.Graphics;
+using SFML.Window;
 using Snake.Scenes;
 using System.Runtime.CompilerServices;
 
@@ -8,23 +9,33 @@ namespace Snake.Fundamentals
     {
         public static List<Scene>? Scenes { get; set; }
         public static Scene? CurrentScene { get; set; }
+
         private static Timer timer;
+        private static ContextSettings contextSettings;
+        private static RenderWindow window;
 
         static Game()
         {
             Initialize();
-
-            timer = new Timer(16.6f);
         }
 
-        public static void Run(RenderTarget target)
+        public static void Run()
         {
-            if (timer.Tick())
+            while (window.IsOpen)
             {
-                CurrentScene?.Update(target);
-            }
+                window.DispatchEvents();
 
-            CurrentScene?.Draw(target);
+                window.Clear(new Color(28, 18, 22, 255));
+
+                if (timer.Tick())
+                {
+                    CurrentScene?.Update(window);
+                }
+
+                CurrentScene?.Draw(window);
+
+                window.Display();
+            }
         }
     }
 }
