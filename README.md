@@ -1,12 +1,12 @@
 # Snake
 
-This is my small project for the implementation of the Snake game in C # using the SFML.Net library.
+This is my small project for the implementation of the Snake game in C# using the `CSFML` library.
 
 I am still trying to improve my skills :)
 
 # Addition of a task
 
-For more interest, I decided to complicate the initial task of writing the game: write my own UI and scene manager for it.
+For more interest, I decided to complicate the initial task of writing the game: `write my own UI and scene manager for it`.
 It seems to me that the task has been completed :)
 
 # Game
