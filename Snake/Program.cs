@@ -12,7 +12,7 @@ namespace Snake
     {
         static ContextSettings settings = new ContextSettings(1, 1, 8);
 
-        static RenderWindow window = new RenderWindow(new SFML.Window.VideoMode(700, 700), "Snake", SFML.Window.Styles.Close, settings);
+        static RenderWindow window = new RenderWindow(new SFML.Window.VideoMode(700, 700), "Snake", SFML.Window.Styles.Titlebar, settings);
 
         static void Main(string[] args)
         {
