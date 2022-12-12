@@ -12,7 +12,7 @@ namespace Snake.Fundamentals
     {
         //Other
         private static Font? font;
-        private static int clickCount = 0;
+        private static int score = 1;
 
         //Menu
         private static Button? buttonStart;
@@ -23,8 +23,6 @@ namespace Snake.Fundamentals
 
         //Settings
         private static Button? buttonMenuBack;
-        private static Button? buttonCounter;
-        private static Label? labelExample;
         private static CheckBox? checkBox;
         private static Scene? settings;
 
@@ -32,6 +30,8 @@ namespace Snake.Fundamentals
         private static Button? buttonGameBack;
         private static Scene? game;
         private static Field? field;
+        private static Label? scoreLabel;
+
         private static void Initialize()
         {
             timer = new Timer(16.6f);
@@ -73,16 +73,10 @@ namespace Snake.Fundamentals
             buttonMenuBack.Click += ButtonMenuBack_Click;
             buttonMenuBack.Aimed += Button_Aimed;
 
-            buttonCounter = new Button(300, 300, "Click me", font, new Color(100, 31, 21, 255));
-            buttonCounter.Click += ButtonCounter_Click; ;
-            buttonCounter.Aimed += Button_Aimed;
-
-            labelExample = new Label(500, 100, "Label", font);
-
             checkBox = new CheckBox(10, 100, "Vertical Sync", font);
             checkBox.Click += CheckBox_Click;
 
-            settings = new Scene("Settings", new ElementUI[] { buttonMenuBack, checkBox, buttonCounter, labelExample },
+            settings = new Scene("Settings", new ElementUI[] { buttonMenuBack, checkBox },
                                    new GameObject[] { });
             #endregion
 
@@ -92,9 +86,11 @@ namespace Snake.Fundamentals
             buttonGameBack.Click += ButtonGameBack_Click; ;
             buttonGameBack.Aimed += Button_Aimed;
 
+            scoreLabel = new Label(100, 620, $"Score is {score}", font);
+
             field = new Field(25, 25, window);
 
-            settings = new Scene("Game", new ElementUI[] { buttonGameBack },
+            settings = new Scene("Game", new ElementUI[] { buttonGameBack, scoreLabel },
                                    new GameObject[] { field });
             #endregion
 
@@ -106,10 +102,10 @@ namespace Snake.Fundamentals
             SceneManager.LoadScene("Menu");
         }
 
-        private static void ButtonCounter_Click(object sender, EventArgs e)
+        public static void ScoreRised()
         {
-            clickCount++;
-            labelExample.Text = clickCount.ToString();
+            score++;
+            scoreLabel.Text = $"Score is: {score}"; 
         }
 
         private static void CheckBox_Click(object sender, EventArgs e)

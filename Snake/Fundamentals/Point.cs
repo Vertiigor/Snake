@@ -18,7 +18,7 @@
 
             var other = obj as Point;
 
-            return this.X == other?.X && this.Y == other?.Y;
+            return (int)this.X == (int)other?.X && (int)this.Y == (int)other?.Y;
         }
 
         public override int GetHashCode()

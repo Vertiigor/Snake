@@ -6,13 +6,14 @@ namespace Snake.UI.Elements
 {
     public class CheckBox : ElementUI, IClickable
     {
+        private RectangleShape border, isChecked;
+        private bool value, selected;
+        private string text;
+
         public event ElementUIHandler? Click;
         public event ElementUIHandler? Aimed;
         public Text Text { get; set; }
 
-        private RectangleShape border, isChecked;
-        private bool value, selected;
-        private string text;
 
         public bool Value 
         {

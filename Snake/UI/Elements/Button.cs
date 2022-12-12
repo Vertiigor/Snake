@@ -7,6 +7,9 @@ namespace Snake.UI.Elements
 {
     public class Button : ElementUI, IClickable
     {
+        private RectangleShape area;
+        private Color originalColor;
+
         public event ElementUIHandler? Click;
         public event ElementUIHandler? Aimed;
 
@@ -20,8 +23,6 @@ namespace Snake.UI.Elements
             }
         }
         public Vector2f size { get; private set; }
-        private RectangleShape area;
-        private Color originalColor;
 
         public Button(float x, float y, string text, Font font, Color backgroundColor)
         {

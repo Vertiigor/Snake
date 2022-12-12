@@ -7,12 +7,19 @@ namespace Snake.Fundamentals.GameObjects
     {
         private Snake snake;
         private Apple apple;
-
         private List<RectangleShape> cells;
+        private Random rnd;
+        private int width, height;
 
         public Field(int width, int height, RenderTarget target) 
         {
+            this.width = width;
+            this.height = height;
+
+            rnd = new Random();
+
             snake = new Snake(target);
+            apple = new Apple(rnd.Next(0, width), rnd.Next(0, height));
 
             cells = new List<RectangleShape>();
 
@@ -28,6 +35,13 @@ namespace Snake.Fundamentals.GameObjects
         {
             snake?.Update(target);
             apple?.Update(target);
+
+            if(apple.Origin.Equals(snake.Origin))
+            {
+                apple = new Apple(rnd.Next(0, width), rnd.Next(0, height));
+                snake.Length++;
+                Game.ScoreRised();
+            }
         }
 
         public override void Draw(RenderTarget target, RenderStates states)
@@ -36,6 +50,7 @@ namespace Snake.Fundamentals.GameObjects
             {
                 target.Draw(cell);
             }
+            target.Draw(apple);
             target.Draw(snake);
         }
     }

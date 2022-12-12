@@ -1,5 +1,5 @@
 ﻿using SFML.Graphics;
-using SFML.Window;
+using Snake.Scenes.Managment;
 
 namespace Snake.Fundamentals.GameObjects
 {
@@ -9,7 +9,7 @@ namespace Snake.Fundamentals.GameObjects
         private List<BodyPart> bodyParts;
 
         public InputSystem.Direction direction { get; set; }
-        public int Length;
+        public int Length { get; set; }
 
 
         public Snake(RenderTarget target)
@@ -24,7 +24,7 @@ namespace Snake.Fundamentals.GameObjects
 
             bodyParts.Add(new BodyPart(1, 1));
 
-            Length = 5;
+            Length = 1;
         }
         public override void Update(RenderTarget target)
         {
@@ -56,9 +56,10 @@ namespace Snake.Fundamentals.GameObjects
                 bodyParts.RemoveAt(0);
             }
 
-            if (bodyParts.Find(b => b.Origin.X == (int)Origin.X && b.Origin.Y == (int)Origin.Y) != null)
+            if (bodyParts.Find(b => b.Origin.Equals(this.Origin)) != null && Length > 1)
             {
                 Console.WriteLine("Collision");
+                SceneManager.LoadScene("Menu");
             }
         }
 
