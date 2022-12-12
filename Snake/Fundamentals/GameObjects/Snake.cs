@@ -6,10 +6,11 @@ namespace Snake.Fundamentals.GameObjects
     public class Snake : GameObject, IMovable
     {
         private InputSystem inputSystem;
+        private List<BodyPart> bodyParts;
 
         public InputSystem.Direction direction { get; set; }
+        public int Length;
 
-        private RectangleShape rect;
 
         public Snake(RenderTarget target)
         {
@@ -19,34 +20,54 @@ namespace Snake.Fundamentals.GameObjects
 
             Origin = new Point(1, 1);
 
-            rect = new RectangleShape(new SFML.System.Vector2f(16, 16));
+            bodyParts = new List<BodyPart>();
+
+            bodyParts.Add(new BodyPart(1, 1));
+
+            Length = 5;
         }
         public override void Update(RenderTarget target)
         {
             switch (direction)
             {
                 case InputSystem.Direction.Left:
+                    if ((int)(Origin.X - 0.2f) < (int)Origin.X)
+                        bodyParts.Add(new BodyPart((int)Origin.X, (int)Origin.Y));
                     Origin.X -= 0.2f;
-                    rect.Position = new SFML.System.Vector2f((int)Origin.X * 16, (int)Origin.Y * 16);
                     break;
                 case InputSystem.Direction.Right:
+                    if ((int)(Origin.X + 0.2f) > (int)Origin.X)
+                        bodyParts.Add(new BodyPart((int)Origin.X, (int)Origin.Y));
                     Origin.X += 0.2f;
-                    rect.Position = new SFML.System.Vector2f((int)Origin.X * 16, (int)Origin.Y * 16);
                     break;
                 case InputSystem.Direction.Up:
+                    if ((int)(Origin.Y - 0.2f) < (int)Origin.Y)
+                        bodyParts.Add(new BodyPart((int)Origin.X, (int)Origin.Y));
                     Origin.Y -= 0.2f;
-                    rect.Position = new SFML.System.Vector2f((int)Origin.X * 16, (int)Origin.Y * 16);
                     break;
                 case InputSystem.Direction.Down:
+                    if ((int)(Origin.Y + 0.2f) > (int)Origin.Y)
+                        bodyParts.Add(new BodyPart((int)Origin.X, (int)Origin.Y));
                     Origin.Y += 0.2f;
-                    rect.Position = new SFML.System.Vector2f((int)Origin.X * 16, (int)Origin.Y * 16);
                     break;
+            }
+            if (bodyParts.Count > Length)
+            {
+                bodyParts.RemoveAt(0);
+            }
+
+            if (bodyParts.Find(b => b.Origin.X == (int)Origin.X && b.Origin.Y == (int)Origin.Y) != null)
+            {
+                Console.WriteLine("Collision");
             }
         }
 
         public override void Draw(RenderTarget target, RenderStates states)
         {
-            target.Draw(rect);
+            foreach(var part in bodyParts)
+            {
+                target.Draw(part);
+            }
         }
     }
 }
