@@ -36,6 +36,7 @@ namespace Snake.Fundamentals.GameObjects
             {
                 target.Draw(cell);
             }
+            target.Draw(snake);
         }
     }
 }
