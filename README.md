@@ -1,6 +1,6 @@
 # Snake
 
-This is my small project for the implementation of the Snake game in C# using the `CSFML` library.
+This is my small project for the implementation of the Snake game in C# using the `SFML.Net` library.
 
 I am still trying to improve my skills :)
 
