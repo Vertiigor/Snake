@@ -2,7 +2,7 @@
 
 namespace Snake.Fundamentals.GameObjects
 {
-    class Field : GameObject
+    public class Apple : GameObject
     {
         public override void Update(RenderTarget target)
         {
