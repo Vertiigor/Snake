@@ -28,9 +28,9 @@ namespace Snake.Scenes
                 element.Update(target);
             }
 
-            foreach (GameObject element in gameObjects)
+            foreach (GameObject gameObject in gameObjects)
             {
-                
+                gameObject.Update(target);
             }
         }
 
@@ -41,9 +41,9 @@ namespace Snake.Scenes
                 target.Draw(element);
             }
 
-            foreach (GameObject element in gameObjects)
+            foreach (GameObject gameObject in gameObjects)
             {
-
+                target.Draw(gameObject);
             }
         }
     }

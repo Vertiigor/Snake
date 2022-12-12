@@ -1,5 +1,6 @@
 ﻿using SFML.Graphics;
 using SFML.Window;
+using Snake.Fundamentals.GameObjects;
 using Snake.Scenes;
 using Snake.Scenes.Managment;
 using Snake.UI;
@@ -30,6 +31,7 @@ namespace Snake.Fundamentals
         //Game
         private static Button? buttonGameBack;
         private static Scene? game;
+        private static Field? field;
         private static void Initialize()
         {
             Scenes = new List<Scene>();
@@ -77,12 +79,14 @@ namespace Snake.Fundamentals
 
             //Game
             #region
-            buttonGameBack = new Button(500, 500, "Back", font, new Color(100, 31, 21, 255));
+            buttonGameBack = new Button(500, 620, "Back", font, new Color(100, 31, 21, 255));
             buttonGameBack.Click += ButtonGameBack_Click; ;
             buttonGameBack.Aimed += Button_Aimed;
 
+            field = new Field(25, 25);
+
             settings = new Scene("Game", new ElementUI[] { buttonGameBack },
-                                   new GameObject[] { });
+                                   new GameObject[] { field });
             #endregion
 
             CurrentScene = menu;
