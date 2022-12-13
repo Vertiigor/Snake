@@ -29,9 +29,9 @@ namespace Snake.UI.Elements
             Origin = new Point(x, y);
 
             Text = new Text(text, font);
-            Text.Position = new Vector2f(x + Text.CharacterSize, y + Text.CharacterSize / 4);
+            Text.Position = new Vector2f(x + Text.CharacterSize, y + Text.CharacterSize / 4); // align the text in the middle of the button
 
-            this.size = new Vector2f(text.Length * Text.CharacterSize, Text.CharacterSize * 2);
+            this.size = new Vector2f(text.Length * Text.CharacterSize, Text.CharacterSize * 2); // determine button size
 
             this.area = new RectangleShape(size);
             this.area.OutlineThickness = 2;

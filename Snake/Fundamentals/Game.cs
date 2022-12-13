@@ -10,8 +10,8 @@ namespace Snake.Fundamentals
         private static ContextSettings contextSettings;
         private static RenderWindow window;
 
-        public static List<Scene>? Scenes { get; set; }
-        public static Scene? CurrentScene { get; set; }
+        public static List<Scene>? Scenes { get; set; } // all registered game scenes
+        public static Scene? CurrentScene { get; set; } // current game scene
 
 
         static Game()
@@ -19,6 +19,9 @@ namespace Snake.Fundamentals
             Initialize();
         }
 
+        /// <summary>
+        /// Starts game session.
+        /// </summary>
         public static void Run()
         {
             while (window.IsOpen)
@@ -29,7 +32,7 @@ namespace Snake.Fundamentals
 
                 if (timer.Tick())
                 {
-                    CurrentScene?.Update(window);
+                    CurrentScene?.Update(window); // updating the current scene every certain period of time
                 }
 
                 CurrentScene?.Draw(window);

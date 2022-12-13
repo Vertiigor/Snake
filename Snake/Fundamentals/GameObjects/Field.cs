@@ -11,17 +11,23 @@ namespace Snake.Fundamentals.GameObjects
         private Random rnd;
         private int width, height;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="width">Field's width.</param>
+        /// <param name="height">Field's height.</param>
+        /// <param name="target">Object that will render the game object.</param>
         public Field(int width, int height, RenderTarget target) 
         {
             this.width = width;
             this.height = height;
 
-            rnd = new Random();
+            this.rnd = new Random();
 
-            snake = new Snake(target);
-            apple = new Apple(rnd.Next(0, width), rnd.Next(0, height));
+            this.snake = new Snake(target);
+            this.apple = new Apple(rnd.Next(0, width), rnd.Next(0, height));
 
-            cells = new List<RectangleShape>();
+            this.cells = new List<RectangleShape>();
 
             for(int x = 0; x < width; x++)
             {
@@ -36,9 +42,10 @@ namespace Snake.Fundamentals.GameObjects
             snake?.Update(target);
             apple?.Update(target);
 
-            if(apple.Origin.Equals(snake.Origin))
+            // if the player collided with an apple
+            if (apple.Origin.Equals(snake.Origin))
             {
-                apple = new Apple(rnd.Next(0, width), rnd.Next(0, height));
+                apple = new Apple(rnd.Next(0, width), rnd.Next(0, height)); // relocate apple
                 snake.Length++;
                 Game.ScoreRised();
             }

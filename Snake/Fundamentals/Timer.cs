@@ -23,6 +23,10 @@ namespace Snake.Fundamentals
             this.clock = new Clock();
         }
 
+        /// <summary>
+        /// Determines the elapsed time and compares with the assigned interval.
+        /// </summary>
+        /// <returns> Returns true and restart if the time is out, false otherwise.</returns>
         public bool Tick()
         {
             if (clock.ElapsedTime.AsMilliseconds() >= tickInterval)

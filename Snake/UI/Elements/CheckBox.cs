@@ -1,6 +1,7 @@
 ﻿using SFML.Graphics;
 using SFML.System;
 using SFML.Window;
+using Snake.Fundamentals;
 
 namespace Snake.UI.Elements
 {
@@ -27,7 +28,7 @@ namespace Snake.UI.Elements
         }
         public CheckBox(float x, float y, string text, Font font, bool value = false) 
         {
-            Origin = new Fundamentals.Point(x, y);
+            Origin = new Point(x, y);
 
             this.border = new RectangleShape(new Vector2f(50, 50));
             this.border.FillColor = new Color(0, 0, 0, 0);

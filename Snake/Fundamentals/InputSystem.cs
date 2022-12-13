@@ -3,6 +3,9 @@ using SFML.Window;
 
 namespace Snake.Fundamentals
 {
+    /// <summary>
+    /// A class that receives information about input from the user.
+    /// </summary>
     public class InputSystem
     {
         public enum Direction
@@ -13,17 +16,23 @@ namespace Snake.Fundamentals
             Down
         }
 
-        private IMovable movable;
+        private IMovable movable; // Movable object to which the input system will be attached.
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target">Object that will render the game object.</param>
+        /// <param name="movable">Movable object to which the input system will be attached.</param>
         public InputSystem(RenderTarget target, IMovable movable)
         {
-            (target as Window).KeyPressed += InputSystem_KeyPressed;
+            (target as Window).KeyPressed += InputSystem_KeyPressed; // subscribe to data processing
 
             this.movable = movable;
         }
 
         private void InputSystem_KeyPressed(object? sender, KeyEventArgs e)
         {
+            // set direction of movable object
             switch (e.Code)
             {
                 case Keyboard.Key.W:

@@ -11,6 +11,12 @@ namespace Snake.Scenes
 
         public string Name { get; private set; }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="name">Scene's name.</param>
+        /// <param name="elemnts">UI elements on the scene.</param>
+        /// <param name="gameObjects">Game objects on the scene.</param>
         public Scene(string name, ElementUI[] elemnts, GameObject[] gameObjects)
         {
             Name = name;

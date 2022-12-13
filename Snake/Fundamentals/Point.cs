@@ -1,5 +1,8 @@
 ﻿namespace Snake.Fundamentals
 {
+    /// <summary>
+    /// A class describing a location in space.
+    /// </summary>
     public class Point
     {
         public float X { get; set; }

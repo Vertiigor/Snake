@@ -11,23 +11,27 @@ namespace Snake.Fundamentals.GameObjects
         public InputSystem.Direction direction { get; set; }
         public int Length { get; set; }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="target">Object that will render the game object.</param>
         public Snake(RenderTarget target)
         {
             this.inputSystem = new InputSystem(target, this);
 
             this.direction = InputSystem.Direction.Right;
 
-            Origin = new Point(1, 1);
+            this.Origin = new Point(1, 1);
 
-            bodyParts = new List<BodyPart>();
+            this.bodyParts = new List<BodyPart>();
 
             bodyParts.Add(new BodyPart(1, 1));
 
-            Length = 1;
+            this.Length = 1;
         }
         public override void Update(RenderTarget target)
         {
+            // determining the player's movement vector, changes coordinates and adding new body parts
             switch (direction)
             {
                 case InputSystem.Direction.Left:
@@ -53,10 +57,10 @@ namespace Snake.Fundamentals.GameObjects
             }
             if (bodyParts.Count > Length)
             {
-                bodyParts.RemoveAt(0);
+                bodyParts.RemoveAt(0); // cut off excess body parts
             }
 
-            if (bodyParts.Find(b => b.Origin.Equals(this.Origin)) != null && Length > 1)
+            if (bodyParts.Find(b => b.Origin.Equals(this.Origin)) != null && Length > 1) // collision with one's own body part
             {
                 Console.WriteLine("Collision");
                 SceneManager.LoadScene("Menu");
